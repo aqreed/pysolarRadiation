@@ -4,7 +4,7 @@
     Photovoltaic panel class
 """
 from .radiation import irradiance_on_plane
-
+from datetime import timezone, timedelta
 
 class solar_panel(object):
     """
@@ -79,4 +79,4 @@ class solar_panel(object):
         Returns the output power of a solar panel
         """
         return irradiance_on_plane(self.vnorm, self.h,
-                                   self.date, self.lat) * self.s * self.eff
+                                   self.date.astimezone(timezone.utc)+timedelta(hours=self.lng/180*12), self.lat) * self.s * self.eff
