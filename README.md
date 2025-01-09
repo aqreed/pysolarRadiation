@@ -44,17 +44,18 @@ Power output (in W) of a solar panel with the following characteristics:
 * efficiency of 0.2
 * pointing upwards
 * in NYC
-* on December 25, at 16.15
+* on December 25, at 13.15
 
 ```
 from numpy import array
 from solarpy import solar_panel
 from datetime import datetime
+import pytz
 
 panel = solar_panel(2.1, 0.2, id_name='NYC_xmas')  # surface, efficiency and name
 panel.set_orientation(array([0, 0, -1]))  # upwards
 panel.set_position(40.73, -73.93, 0)  # NYC latitude, longitude, altitude
-panel.set_datetime(datetime(2019, 12, 25, 16, 15))  # Christmas Day!
+panel.set_datetime(datetime(2019, 12, 25, 13, 15, tzinfo=pytz.timezone('US/Eastern')))  # Christmas Day!
 panel.power()
 ```
 
